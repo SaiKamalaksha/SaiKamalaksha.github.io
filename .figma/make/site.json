@@ -1,0 +1,10 @@
+{
+  "description": "Showcase your professional experience, research, projects, and future goals with a sleek, maroon-themed portfolio designed to impress employers and collaborators.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
