@@ -1,18 +1,23 @@
 import { useEffect, useState } from "react"
 import resumeUrl from "./imports/Kamalaksha_Resume-1.pdf"
 
-type Tab = "home" | "experience" | "research" | "projects"
+type Tab = "home" | "experience" | "research" | "projects" | "education"
 
 const C = {
-  bg: "#6f0010",
-  bgDark: "#420008",
-  bgLight: "#8a0e1d",
-  border: "rgba(0,0,0,0.25)",
-  borderLight: "rgba(255,255,255,0.12)",
+  bg: "#ede1db",
+  bgDark: "#f1e8e5",
+  bgLight: "#f8f4f2",
+  border: "rgba(42, 42, 42, 0.12)",
+  borderLight: "rgba(42, 42, 42, 0.2)",
   white: "#ffffff",
-  black: "#000000",
-  gold: "#f0c060",
-  muted: "rgba(255,255,255,0.68)",
+  black: "#1d1d1d",
+  accent: "#2d8bb8",
+  muted: "rgba(34, 34, 34, 0.74)",
+  cream: "#f7f1ef",
+  sky: "#DDE4ED",
+  sky2: "#CCDBE9",
+  sky3: "#B4C9DD",
+  peach: "#F1B3A1",
 }
 
 const NAV_ITEMS: { id: Tab; label: string }[] = [
@@ -20,6 +25,7 @@ const NAV_ITEMS: { id: Tab; label: string }[] = [
   { id: "experience", label: "Experience" },
   { id: "research", label: "Research" },
   { id: "projects", label: "Projects" },
+  { id: "education", label: "Education" },
 ]
 
 const experiences = [
@@ -85,7 +91,8 @@ const projects = [
   {
     name: "FlameMap",
     description:
-      "University course-dependency visualization tool that lets students choose a major and view every course required to graduate, including prerequisite connections. Scraped nearly 4,000 courses and 300 degrees.",
+
+    "University course-dependency visualization tool that lets students choose a major and view every course required to graduate, including prerequisite connections. Scraped nearly 4,000 courses and 300 degrees.",
     stack: ["Web Development", "Data Scraping", "Visualization"],
   },
   {
@@ -119,21 +126,9 @@ function SectionHeader({
 }) {
   return (
     <div className="mb-14">
-      <p
-        className="font-mono-label text-xs tracking-[0.25em] uppercase mb-4"
-        style={{ color: C.gold }}
-      >
-        {label}
-      </p>
-      <h2
-        className="font-display text-5xl lg:text-6xl mb-5"
-        style={{ color: C.white }}
-      >
-        {title}
-      </h2>
-      <p className="text-base max-w-2xl" style={{ color: C.muted }}>
-        {subtitle}
-      </p>
+      <p className="section-label">{label}</p>
+      <h2 className="section-title">{title}</h2>
+      <p className="section-subtitle">{subtitle}</p>
     </div>
   )
 }
@@ -141,87 +136,64 @@ function SectionHeader({
 function HomeSection() {
   return (
     <div className="min-h-screen flex flex-col">
-      <section className="flex-1 grid lg:grid-cols-[1fr_420px] min-h-[92vh]">
-        <div className="flex flex-col justify-center px-10 lg:px-20 py-24">
-          <p
-            className="font-mono-label text-xs tracking-[0.25em] uppercase mb-6"
-            style={{ color: C.gold }}
-          >
-            Portfolio &amp; Resume
-          </p>
-          <h1
-            className="font-display text-5xl sm:text-6xl lg:text-7xl leading-[1.0] mb-8"
-            style={{ color: C.white }}
-          >
-            SaiKamalaksha Nimishakavi
-          </h1>
-          <p
-            className="text-lg max-w-xl leading-relaxed mb-10"
-            style={{ color: C.muted }}
-          >
+      <section className="home-grid">
+        <div className="hero-copy-block">
+          <p className="eyebrow">Portfolio &amp; Resume</p>
+          <h1 className="hero-title">SaiKamalaksha Nimishakavi</h1>
+          <p className="lead">
             Data Science student, AI researcher, and software builder applying
             machine learning to healthcare, biomedical research, and real-world
             systems.
           </p>
-          <div className="flex flex-wrap gap-4">
-            <a
-              href="mailto:saikamalakshan@email.com"
-              className="px-6 py-3 text-sm font-medium"
-              style={{ backgroundColor: C.black, color: C.white }}
-            >
+          <div className="cta-row">
+            <a href="mailto:saikamalakshan@email.com" className="primary-button">
               Get in Touch →
             </a>
-            <a
-              href={resumeUrl}
-              download
-              className="px-6 py-3 text-sm font-medium"
-              style={{ border: `1px solid ${C.borderLight}`, color: C.white }}
-            >
+            <a href={resumeUrl} download="SaiKamalaksha-Nimishakavi-Resume.pdf" className="secondary-button">
               Download Resume
             </a>
           </div>
         </div>
-        <aside
-          className="hidden lg:flex flex-col justify-end p-12"
-          style={{
-            borderLeft: `1px solid ${C.border}`,
-            backgroundColor: C.bgDark,
-          }}
-        >
-          <div className="space-y-5">
-            {[
-              { label: "University", value: "University of Illinois Chicago" },
-              {
-                label: "Program",
-                value: "B.S. Data Science, Computer Science concentration",
-              },
-              { label: "Expected Graduation", value: "May 2027" },
-            ].map((item) => (
-              <div
-                key={item.label}
-                style={{
-                  borderTop: `1px solid ${C.border}`,
-                  paddingTop: "16px",
-                }}
-              >
-                <p
-                  className="font-mono-label text-xs uppercase tracking-widest mb-1"
-                  style={{ color: C.muted }}
-                >
-                  {item.label}
-                </p>
-                <p className="text-sm font-medium" style={{ color: C.white }}>
-                  {item.value}
-                </p>
-              </div>
-            ))}
-          </div>
-        </aside>
+
       </section>
-      <section
-        className="grid lg:grid-cols-3"
-        style={{ borderTop: `1px solid ${C.border}` }}
-      >
+
+      <section className="home-about-shell">
+        <div className="home-about-header">
+          <p className="section-label">About</p>
+          <h2 className="home-about-title">Who I am</h2>
+        </div>
+
+        <div className="home-about-grid">
+          <div className="home-about-copy">
+            <p>
+              I am SaiKamalaksha Nimishakavi, a Data Science student at the
+              University of Illinois Chicago with a focus on computational
+              research, machine learning, and applied AI. My work centers on
+              translating complex technical ideas into systems that are useful,
+              interpretable, and impactful.
+            </p>
+            <p>
+              I have worked in biomedical AI, engineering education research,
+              and software development, with a growing emphasis on healthcare and
+              decision-support tools. I enjoy building prototypes that connect
+              research questions to practical products and measurable outcomes.
+            </p>
+          </div>
+
+          <aside className="home-interests-panel">
+            <h3 className="home-interests-title">Interests</h3>
+            <ul className="home-interests-list">
+              <li>Machine learning and AI systems</li>
+              <li>Biomedical and health data analysis</li>
+              <li>Data-driven research workflows</li>
+              <li>Applied software engineering</li>
+              <li>Engineering education and student impact</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section className="info-strip">
         {[
           {
             title: "Focus",
@@ -238,18 +210,11 @@ function HomeSection() {
         ].map((card, i) => (
           <div
             key={card.title}
-            className="p-10"
+            className="info-card"
             style={{ borderRight: i < 2 ? `1px solid ${C.border}` : undefined }}
           >
-            <h3
-              className="font-display text-2xl mb-4"
-              style={{ color: C.white }}
-            >
-              {card.title}
-            </h3>
-            <p className="text-sm leading-relaxed" style={{ color: C.muted }}>
-              {card.body}
-            </p>
+            <h3 className="info-card-title">{card.title}</h3>
+            <p className="info-card-body">{card.body}</p>
           </div>
         ))}
       </section>
@@ -260,64 +225,33 @@ function HomeSection() {
 function ExperienceSection() {
   const [open, setOpen] = useState(0)
   return (
-    <section className="max-w-5xl mx-auto px-6 lg:px-10 py-20">
+    <section className="content-shell">
       <SectionHeader
         label="Experience"
         title="Professional History"
         subtitle="Research, engineering, and leadership work across national laboratories, industry, and UIC."
       />
-      <div style={{ borderTop: `1px solid ${C.border}` }}>
+      <div className="timeline-shell">
         {experiences.map((exp, i) => (
-          <div key={exp.role} style={{ borderBottom: `1px solid ${C.border}` }}>
-            <button
-              className="w-full text-left py-7 flex items-start justify-between gap-6"
-              onClick={() => setOpen(open === i ? -1 : i)}
-            >
-              <div className="flex gap-6">
-                <span
-                  className="font-mono-label text-xs mt-1"
-                  style={{ color: C.gold }}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
+          <div key={exp.role} className="timeline-item">
+            <button className="timeline-button" onClick={() => setOpen(open === i ? -1 : i)}>
+              <div className="timeline-main">
+                <span className="timeline-index">{String(i + 1).padStart(2, "0")}</span>
                 <div>
-                  <p
-                    className="font-display text-xl mb-1"
-                    style={{ color: C.white }}
-                  >
-                    {exp.role}
-                  </p>
-                  <p className="text-sm" style={{ color: C.muted }}>
-                    {exp.org} <span style={{ color: C.gold }}>·</span>{" "}
-                    {exp.period}{" "}
-                    <span
-                      className="ml-2 font-mono-label text-xs"
-                      style={{ color: C.gold }}
-                    >
-                      {exp.type}
-                    </span>
+                  <p className="timeline-role">{exp.role}</p>
+                  <p className="timeline-meta">
+                    {exp.org} <span className="dot">·</span> {exp.period}{" "}
+                    <span className="timeline-type">{exp.type}</span>
                   </p>
                 </div>
               </div>
-              <span className="text-xl" style={{ color: C.muted }}>
-                {open === i ? "−" : "+"}
-              </span>
+              <span className="timeline-toggle">{open === i ? "−" : "+"}</span>
             </button>
             {open === i && (
-              <div className="pl-12 pb-8">
-                <ul className="space-y-3">
+              <div className="timeline-details">
+                <ul>
                   {exp.bullets.map((bullet) => (
-                    <li
-                      key={bullet}
-                      className="flex gap-3 text-sm leading-relaxed"
-                      style={{ color: C.muted }}
-                    >
-                      <span
-                        className="mt-2 shrink-0 w-1 h-1 rounded-full"
-                        style={{ backgroundColor: C.gold }}
-                      />
-                      {bullet}
-                    </li>
+                    <li key={bullet}>{bullet}</li>
                   ))}
                 </ul>
               </div>
@@ -325,36 +259,7 @@ function ExperienceSection() {
           </div>
         ))}
       </div>
-      <div className="mt-20">
-        <h3 className="font-display text-2xl mb-6" style={{ color: C.white }}>
-          Education
-        </h3>
-        <div
-          className="p-7"
-          style={{ border: `1px solid ${C.border}`, backgroundColor: C.bgDark }}
-        >
-          <p className="font-display text-xl mb-2" style={{ color: C.white }}>
-            B.S. Data Science, Concentration in Computer Science
-          </p>
-          <p className="text-sm mb-3" style={{ color: C.muted }}>
-            University of Illinois Chicago · Expected May 2027 · 4.0 GPA
-          </p>
-          <p className="font-mono-label text-xs" style={{ color: C.gold }}>
-            Minor in Mathematics · Honors College · Senior Standing · Dean’s
-            List
-          </p>
-          <p
-            className="text-sm mt-5 leading-relaxed"
-            style={{ color: C.muted }}
-          >
-            Relevant coursework: Program Design, Discrete Mathematics,
-            Object-Oriented Programming, Data Structures, Software Design,
-            Computer Algorithms, Artificial Intelligence, Data Science, Database
-            Systems, Applied Statistical Methods, Calculus I–III, Applied Linear
-            Algebra, and Business Project Management.
-          </p>
-        </div>
-      </div>
+
     </section>
   )
 }
@@ -375,31 +280,17 @@ function ResearchSection() {
     },
   ]
   return (
-    <section className="max-w-5xl mx-auto px-6 lg:px-10 py-20">
+    <section className="content-shell">
       <SectionHeader
         label="Research"
         title="Current Research"
         subtitle="Applied work at the intersection of AI, biomedical data, education, and mathematics."
       />
-      <div className="grid lg:grid-cols-3 gap-5">
+      <div className="research-grid">
         {areas.map((area) => (
-          <article
-            key={area.title}
-            className="p-7"
-            style={{
-              border: `1px solid ${C.border}`,
-              backgroundColor: C.bgDark,
-            }}
-          >
-            <h3
-              className="font-display text-2xl mb-4"
-              style={{ color: C.white }}
-            >
-              {area.title}
-            </h3>
-            <p className="text-sm leading-relaxed" style={{ color: C.muted }}>
-              {area.body}
-            </p>
+          <article key={area.title} className="research-card">
+            <h3 className="research-title">{area.title}</h3>
+            <p className="research-body">{area.body}</p>
           </article>
         ))}
       </div>
@@ -408,66 +299,22 @@ function ResearchSection() {
 }
 
 function ProjectsSection() {
-  const skills = [
-    {
-      category: "Languages",
-      items: "Python, Java, C, C++, JavaScript, R, SQL",
-    },
-    {
-      category: "Cloud & APIs",
-      items: "AWS, virtual machines, databases, FastAPI, RESTful APIs",
-    },
-    {
-      category: "Frameworks",
-      items: "OLLAMA, LLM frameworks, Django, Flask, React",
-    },
-    {
-      category: "Python Libraries",
-      items: "Pandas, NumPy, scikit-learn, BeautifulSoup",
-    },
-  ]
   return (
-    <section className="max-w-5xl mx-auto px-6 lg:px-10 py-20">
+    <section className="content-shell">
       <SectionHeader
         label="Projects"
         title="Selected Work"
         subtitle="Tools and platforms built for student planning, fair service decisions, equipment health, and maternal support."
       />
-      <div className="grid lg:grid-cols-2 gap-6">
+      <div className="project-grid">
         {projects.map((project, i) => (
-          <article
-            key={project.name}
-            className="p-8 flex flex-col"
-            style={{
-              border: `1px solid ${C.border}`,
-              backgroundColor: C.bgDark,
-            }}
-          >
-            <span
-              className="font-mono-label text-xs mb-6"
-              style={{ color: C.gold }}
-            >
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <h3
-              className="font-display text-2xl mb-4"
-              style={{ color: C.white }}
-            >
-              {project.name}
-            </h3>
-            <p
-              className="text-sm leading-relaxed flex-1 mb-6"
-              style={{ color: C.muted }}
-            >
-              {project.description}
-            </p>
-            <div className="flex flex-wrap gap-2">
+          <article key={project.name} className="project-card">
+            <span className="project-index">{String(i + 1).padStart(2, "0")}</span>
+            <h3 className="project-title">{project.name}</h3>
+            <p className="project-body">{project.description}</p>
+            <div className="project-stack">
               {project.stack.map((tech) => (
-                <span
-                  key={tech}
-                  className="font-mono-label text-xs px-2 py-1"
-                  style={{ border: `1px solid ${C.border}`, color: C.gold }}
-                >
+                <span key={tech} className="project-tech">
                   {tech}
                 </span>
               ))}
@@ -475,35 +322,39 @@ function ProjectsSection() {
           </article>
         ))}
       </div>
-      <div className="mt-20">
-        <h3 className="font-display text-2xl mb-8" style={{ color: C.white }}>
-          Technical Skills
-        </h3>
-        <div
-          className="grid lg:grid-cols-2"
-          style={{
-            borderTop: `1px solid ${C.border}`,
-            borderLeft: `1px solid ${C.border}`,
-          }}
-        >
+    </section>
+  )
+}
+
+function EducationSection() {
+  const skills = [
+    { category: "Languages", items: "Python, Java, C, C++, JavaScript, R, SQL" },
+    { category: "Cloud & APIs", items: "AWS, virtual machines, databases, FastAPI, RESTful APIs" },
+    { category: "Frameworks", items: "OLLAMA, LLM frameworks, Django, Flask, React" },
+    { category: "Python Libraries", items: "Pandas, NumPy, scikit-learn, BeautifulSoup" },
+  ]
+  return (
+    <section className="content-shell">
+      <SectionHeader
+        label="Education"
+        title="Academic Background"
+        subtitle="My studies at the University of Illinois Chicago and the technical tools that support my work."
+      />
+      <div className="education-card">
+        <p className="education-degree">B.S. Data Science, Concentration in Computer Science</p>
+        <p className="education-meta">University of Illinois Chicago · Expected May 2027 · 4.0 GPA</p>
+        <p className="education-tagline">Minor in Mathematics · Honors College · Senior Standing · Dean’s List</p>
+        <p className="education-detail">
+          Relevant coursework: Program Design, Discrete Mathematics, Object-Oriented Programming, Data Structures, Software Design, Computer Algorithms, Artificial Intelligence, Data Science, Database Systems, Applied Statistical Methods, Calculus I–III, Applied Linear Algebra, and Business Project Management.
+        </p>
+      </div>
+      <div className="skill-panel">
+        <h3 className="skill-title">Technical Skills</h3>
+        <div className="skill-grid">
           {skills.map((skill) => (
-            <div
-              key={skill.category}
-              className="p-6"
-              style={{
-                borderRight: `1px solid ${C.border}`,
-                borderBottom: `1px solid ${C.border}`,
-              }}
-            >
-              <p
-                className="font-mono-label text-xs uppercase tracking-widest mb-3"
-                style={{ color: C.gold }}
-              >
-                {skill.category}
-              </p>
-              <p className="text-sm" style={{ color: C.muted }}>
-                {skill.items}
-              </p>
+            <div key={skill.category} className="skill-item">
+              <p className="skill-label">{skill.category}</p>
+              <p className="skill-body">{skill.items}</p>
             </div>
           ))}
         </div>
@@ -515,91 +366,64 @@ function ProjectsSection() {
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>("home")
   const [scrolled, setScrolled] = useState(false)
+
   useEffect(() => {
     const update = () => setScrolled(window.scrollY > 40)
     window.addEventListener("scroll", update)
     return () => window.removeEventListener("scroll", update)
   }, [])
+
   const changeTab = (tab: Tab) => {
     setActiveTab(tab)
     window.scrollTo({ top: 0, behavior: "smooth" })
   }
+
   return (
-    <div style={{ backgroundColor: C.bg, minHeight: "100vh", color: C.white }}>
+    <div
+      className="page-shell"
+      style={{ backgroundColor: C.bg, minHeight: "100vh", color: C.black }}
+    >
       <nav
-        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 lg:px-12"
+        className="top-nav"
         style={{
-          height: "64px",
           borderBottom: `1px solid ${scrolled ? C.border : "transparent"}`,
-          backgroundColor: scrolled
-            ? "rgba(66,0,8,0.97)"
-            : "rgba(111,0,16,0.88)",
-          backdropFilter: "blur(12px)",
+          background: scrolled ? "rgba(237, 225, 219, 0.9)" : "rgba(237, 225, 219, 0.75)",
         }}
       >
-        <button
-          onClick={() => changeTab("home")}
-          className="font-display text-xs lg:text-base whitespace-nowrap"
-          style={{ color: C.white }}
-        >
-          Sai Kamalaksha Nimishakavi
+        <button onClick={() => changeTab("home")} className="nav-brand">
+          SaiKamalaksha Nimishakavi
         </button>
-        <div className="flex items-center gap-1">
+        <div className="nav-links">
           {NAV_ITEMS.map((item) => (
             <button
               key={item.id}
               onClick={() => changeTab(item.id)}
-              className="px-2 lg:px-4 py-2 text-xs lg:text-sm font-medium"
-              style={{ color: activeTab === item.id ? C.white : C.muted }}
+              className="nav-item"
+              style={{ color: activeTab === item.id ? C.black : C.muted }}
             >
               {item.label}
             </button>
           ))}
         </div>
-        <a
-          href="mailto:saikamalakshan@email.com"
-          className="hidden md:inline-flex px-4 py-2 text-xs font-medium"
-          style={{ border: `1px solid ${C.borderLight}`, color: C.white }}
-        >
+        <a href="mailto:saikamalakshan@email.com" className="nav-cta">
           Contact
         </a>
       </nav>
-      <main style={{ paddingTop: "64px" }}>
+
+      <main className="main-shell" style={{ paddingTop: "64px" }}>
         {activeTab === "home" && <HomeSection />}
         {activeTab === "experience" && <ExperienceSection />}
         {activeTab === "research" && <ResearchSection />}
         {activeTab === "projects" && <ProjectsSection />}
+        {activeTab === "education" && <EducationSection />}
       </main>
-      <footer
-        className="flex flex-col md:flex-row items-center justify-between px-10 lg:px-16 py-8 gap-4"
-        style={{ borderTop: `1px solid ${C.border}` }}
-      >
-        <p className="font-mono-label text-xs" style={{ color: C.muted }}>
-          © 2026 Sai Kamalaksha Nimishakavi.
-        </p>
-        <div className="flex items-center gap-6">
-          <a
-            href="https://github.com/SaiKamalaksha"
-            className="font-mono-label text-xs"
-            style={{ color: C.muted }}
-          >
-            GitHub
-          </a>
-          <a
-            href="https://www.linkedin.com/in/saikamalaksha-nimishakavi/"
-            className="font-mono-label text-xs"
-            style={{ color: C.muted }}
-          >
-            LinkedIn
-          </a>
-          <a
-            href={resumeUrl}
-            download
-            className="font-mono-label text-xs"
-            style={{ color: C.muted }}
-          >
-            Résumé
-          </a>
+
+      <footer className="site-footer">
+        <p className="footer-text">© 2026 SaiKamalaksha Nimishakavi.</p>
+        <div className="footer-links">
+          <a href="https://github.com/SaiKamalaksha">GitHub</a>
+          <a href="https://www.linkedin.com/in/saikamalaksha-nimishakavi/">LinkedIn</a>
+          <a href={resumeUrl} download="SaiKamalaksha-Nimishakavi-Resume.pdf">Résumé</a>
         </div>
       </footer>
     </div>

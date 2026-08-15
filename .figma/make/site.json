@@ -1,5 +1,9 @@
 {
-  "description": "Showcase your professional experience, research, projects, and future goals with a sleek, maroon-themed portfolio designed to impress employers and collaborators.",
+  "title": "Kamalaksha's Portfolio",
+  "description": "SaiKamalaksha Nimishakavi's portfolio showcasing professional experience, research, projects, and technical work.",
+  "icons": {
+    "icon": "/favicon.svg"
+  },
   "robots": {
     "index": false
   },
