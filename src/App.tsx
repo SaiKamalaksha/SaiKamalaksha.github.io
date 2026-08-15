@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import resumeUrl from "./imports/Kamalaksha_Resume-1.pdf"
+import profilePhoto from "../kamiface.jpg"
 
 type Tab = "home" | "experience" | "research" | "projects" | "education"
 
@@ -154,6 +155,14 @@ function HomeSection() {
             </a>
           </div>
         </div>
+
+        <aside className="hero-photo-panel">
+          <img
+            src={profilePhoto}
+            alt="SaiKamalaksha Nimishakavi"
+            className="hero-photo"
+          />
+        </aside>
 
       </section>
 

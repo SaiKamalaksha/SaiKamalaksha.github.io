@@ -152,11 +152,29 @@ a {
   align-items: start;
   min-height: auto;
   padding-top: 88px;
-  padding-bottom: 48px;
+  padding-bottom: 24px;
 }
 
 .hero-copy-block {
   padding-top: 0;
+}
+
+.hero-photo-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+  padding-left: 18px;
+}
+
+.hero-photo {
+  width: min(100%, 385px);
+  height: 520px;
+  display: block;
+  object-fit: cover;
+  object-position: center 35%;
+  border-radius: 0;
+  border: 3px solid var(--ink);
 }
 
 .eyebrow {
@@ -290,7 +308,7 @@ a {
 }
 
 .home-about-shell {
-  padding-top: 22px;
+  padding-top: 8px;
   padding-bottom: 30px;
 }
 
@@ -299,7 +317,7 @@ a {
 }
 
 .home-about-title {
-  font-size: clamp(3rem, 4.8vw, 5.5rem);
+  font-size: clamp(2.6rem, 4.2vw, 4.8rem);
   line-height: 1;
   margin: 0;
   font-style: normal;
@@ -656,6 +674,17 @@ a {
     gap: 28px;
     min-height: auto;
     padding-top: 48px;
+  }
+
+  .hero-photo-panel {
+    min-height: auto;
+    padding: 0;
+    border-left: 0;
+  }
+
+  .hero-photo {
+    width: min(100%, 360px);
+    height: min(112vw, 480px);
   }
 
   .research-grid,
